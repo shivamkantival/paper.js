@@ -139,9 +139,14 @@ var CanvasView = View.extend(/** @lends CanvasView# */{
         var project = this._project,
             ctx = this._context,
             size = this._viewSize;
-        ctx.clearRect(0, 0, size.width + 1, size.height + 1);
-        if (project)
-            project.draw(ctx, this._matrix, this._pixelRatio);
+        /**
+         * Next three lines is what updates the canvas, if we can mock this class out, we do not need canvas API
+         * uncommenting next three lines will reflect a red line from given example
+         * if next three lines are commented, view is not updated, but bounding rect is through Path.js:2701
+         */
+        // ctx.clearRect(0, 0, size.width + 1, size.height + 1);
+        // if (project)
+        //     project.draw(ctx, this._matrix, this._pixelRatio);
         this._needsUpdate = false;
         return true;
     }

@@ -2698,6 +2698,9 @@ statics: {
      *
      * @private
      */
+    /**
+     * This is the method that computes the bounding rect in JS
+     */
     getBounds: function(segments, closed, path, matrix, options, strokePadding) {
         var first = segments[0];
         // If there are no segments, return "empty" rectangle, just like groups,
