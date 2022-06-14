@@ -42,17 +42,16 @@ var CanvasView = View.extend(/** @lends CanvasView# */{
                         + Base.slice(arguments, 1));
             canvas = CanvasProvider.getCanvas(size);
         }
-        var ctx = this._context = canvas.getContext('2d');
+        // var ctx = this._context = canvas.getContext('2d');
         // Save context right away, and restore in #remove(). Also restore() and
         // save() again in _setElementSize() to prevent accumulation of scaling.
-        ctx.save();
+        // ctx.save();
         this._pixelRatio = 1;
         if (!/^off|false$/.test(PaperScope.getAttribute(canvas, 'hidpi'))) {
             // Hi-DPI Canvas support based on:
             // https://www.html5rocks.com/en/tutorials/canvas/hidpi/
             var deviceRatio = window.devicePixelRatio || 1,
-                backingStoreRatio = DomElement.getPrefixed(ctx,
-                        'backingStorePixelRatio') || 1;
+                backingStoreRatio = 1;
             this._pixelRatio = deviceRatio / backingStoreRatio;
         }
         View.call(this, project, canvas);
@@ -61,7 +60,7 @@ var CanvasView = View.extend(/** @lends CanvasView# */{
     },
 
     remove: function remove() {
-        this._context.restore();
+        // this._context.restore();
         return remove.base.call(this);
     },
 
@@ -70,8 +69,8 @@ var CanvasView = View.extend(/** @lends CanvasView# */{
         // Upscale the canvas if the pixel ratio is more than 1.
         _setElementSize.base.call(this, width * pixelRatio, height * pixelRatio);
         if (pixelRatio !== 1) {
-            var element = this._element,
-                ctx = this._context;
+            var element = this._element;
+                // ctx = this._context;
             // We need to set the correct size on non-resizable canvases through
             // their style when HiDPI is active, as otherwise they would appear
             // too big.
@@ -82,14 +81,14 @@ var CanvasView = View.extend(/** @lends CanvasView# */{
             }
             // Scale the context to counter the fact that we've manually scaled
             // our canvas element.
-            ctx.restore();
-            ctx.save();
-            ctx.scale(pixelRatio, pixelRatio);
+            // ctx.restore();
+            // ctx.save();
+            // ctx.scale(pixelRatio, pixelRatio);
         }
     },
 
     getContext: function() {
-        return this._context;
+        return;
     },
 
     /**
@@ -104,25 +103,25 @@ var CanvasView = View.extend(/** @lends CanvasView# */{
         if (agent && agent.firefox) {
             pixels = getPixelSize.base.call(this, size);
         } else {
-            var ctx = this._context,
-                prevFont = ctx.font;
-            ctx.font = size + ' serif';
-            pixels = parseFloat(ctx.font);
-            ctx.font = prevFont;
+            // var ctx = this._context,
+            //     prevFont = ctx.font;
+            // ctx.font = size + ' serif';
+            // pixels = parseFloat(ctx.font);
+            // ctx.font = prevFont;
         }
         return pixels;
     },
 
     getTextWidth: function(font, lines) {
-        var ctx = this._context,
-            prevFont = ctx.font,
-            width = 0;
-        ctx.font = font;
-        // Measure the real width of the text. Unfortunately, there is no sane
-        // way to measure text height with canvas.
-        for (var i = 0, l = lines.length; i < l; i++)
-            width = Math.max(width, ctx.measureText(lines[i]).width);
-        ctx.font = prevFont;
+        // var ctx = this._context,
+        //     prevFont = ctx.font,
+            var width = 0;
+        // ctx.font = font;
+        // // Measure the real width of the text. Unfortunately, there is no sane
+        // // way to measure text height with canvas.
+        // for (var i = 0, l = lines.length; i < l; i++)
+        //     width = Math.max(width, ctx.measureText(lines[i]).width);
+        // ctx.font = prevFont;
         return width;
     },
 
