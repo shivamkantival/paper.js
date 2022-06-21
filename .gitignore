@@ -2,6 +2,7 @@
 /dist/*/
 /dist/*.min.js
 /dist/paperjs.zip
+.idea
 # Yarn
 .yarn/*
 !.yarn/cache
