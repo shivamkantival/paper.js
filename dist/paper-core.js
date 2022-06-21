@@ -1,5 +1,5 @@
 /*!
- * Paper.js v0.12.15-test - The Swiss Army Knife of Vector Graphics Scripting.
+ * Paper.js v0.12.15-test-jsdomless-release - The Swiss Army Knife of Vector Graphics Scripting.
  * http://paperjs.org/
  *
  * Copyright (c) 2011 - 2020, Jürg Lehni & Jonathan Puckey
@@ -9,7 +9,7 @@
  *
  * All rights reserved.
  *
- * Date: Tue Jun 21 20:57:18 2022 +0200
+ * Date: Tue Jun 21 20:57:41 2022 +0200
  *
  ***
  *
@@ -821,7 +821,7 @@ var PaperScope = Base.extend({
 		}
 	},
 
-	version: "0.12.15-test",
+	version: "0.12.15-test-jsdomless-release",
 
 	getView: function() {
 		var project = this.project;
